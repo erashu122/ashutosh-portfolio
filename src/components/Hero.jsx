@@ -70,7 +70,15 @@ export default function Hero() {
             </motion.h1>
 
             <motion.div variants={item} className="mt-4">
-              <TypingRoles />
+              <TypingRoles
+                roles={[
+                  "Full Stack Developer",
+                  "Java Backend Developer",
+                  "Python Developer",
+                  "React Developer",
+                  "DevOps Learner",
+                ]}
+              />
             </motion.div>
 
             <motion.p
