@@ -73,8 +73,8 @@ export const PROJECTS = [
     description:
       'A responsive portfolio showcasing projects, certifications, and technical skills, optimized for both desktop and mobile with a clean, user-friendly interface.',
     stack: ['React.js', 'JavaScript', 'Tailwind CSS'],
-    github: 'https://github.com/erashu122',
-    demo: '',
+    github: 'https://github.com/erashu122/ashutosh-portfolio.git',
+    demo: 'https://ashutosh-portfolio-taupe.vercel.app/',
     accent: 'mint',
     icon: 'user',
     status: 'completed',
