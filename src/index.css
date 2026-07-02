@@ -50,6 +50,10 @@
     @apply bg-base-850/60 backdrop-blur-xl border border-white/[0.06];
   }
 
+  .glass-card {
+    @apply bg-base-850/80 backdrop-blur-xl border border-white/[0.06] rounded-2xl;
+  }
+
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-lg bg-violet-500 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-violet-600 hover:shadow-glow active:scale-[0.98];
   }
@@ -60,6 +64,48 @@
 
   .tag-chip {
     @apply rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-ink-300;
+  }
+
+  .dashboard-card {
+    @apply relative bg-base-850/80 backdrop-blur-xl border border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-300 hover:border-violet-500/30 hover:shadow-card-hover;
+  }
+
+  .dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139,108,246,0.5), transparent);
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider;
+  }
+
+  .status-badge.completed {
+    @apply bg-mint-500/10 text-mint-400 border border-mint-500/20;
+  }
+
+  .status-badge.in-progress {
+    @apply bg-violet-500/10 text-violet-400 border border-violet-500/20;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(139, 108, 246, 0.5);
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(90deg, transparent, rgba(139,108,246,0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .border-gradient {
+    background: linear-gradient(90deg, #8B6CF6, #39E2A4, #00D4FF, #8B6CF6);
+    background-size: 300% 100%;
+    animation: borderFlow 3s linear infinite;
   }
 }
 

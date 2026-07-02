@@ -45,6 +45,18 @@ export const SKILLS = [
 
 export const PROJECTS = [
   {
+    title: 'Mitti-Desh',
+    description:
+      'An e-commerce platform celebrating India\'s timeless pottery traditions. Features handcrafted terracotta products from rural artisans, product catalog, cart functionality, and artisan stories.',
+    stack: ['React.js', 'Vite', 'Tailwind CSS', 'Responsive Design'],
+    github: 'https://github.com/erashu122/mitti-desh.git',
+    demo: 'https://mitti-desh.vercel.app/',
+    accent: 'mint',
+    icon: 'globe',
+    status: 'completed',
+    year: '2025',
+  },
+  {
     title: 'Fitness Application (Microservices)',
     description:
       'A scalable fitness platform with secure REST APIs built on Spring Boot, JWT authentication, and Keycloak, backed by PostgreSQL services and validated end-to-end with Postman.',
@@ -53,16 +65,20 @@ export const PROJECTS = [
     demo: '',
     accent: 'violet',
     icon: 'dumbbell',
+    status: 'completed',
+    year: '2025',
   },
   {
     title: 'Personal Portfolio Website',
     description:
       'A responsive portfolio showcasing projects, certifications, and technical skills, optimized for both desktop and mobile with a clean, user-friendly interface.',
-    stack: ['React.js', 'JavaScript'],
+    stack: ['React.js', 'JavaScript', 'Tailwind CSS'],
     github: 'https://github.com/erashu122',
     demo: '',
     accent: 'mint',
     icon: 'user',
+    status: 'completed',
+    year: '2025',
   },
   {
     title: 'Weather Forecast Web Application',
@@ -73,6 +89,68 @@ export const PROJECTS = [
     demo: '',
     accent: 'violet',
     icon: 'cloud',
+    status: 'completed',
+    year: '2024',
+  },
+  {
+    title: 'E-Commerce Microservices Platform',
+    description:
+      'A full-featured e-commerce backend with order management, inventory tracking, and payment gateway integration. Built with Spring Boot microservices, API Gateway, and event-driven architecture using Kafka.',
+    stack: ['Spring Boot', 'Kafka', 'PostgreSQL', 'Docker', 'Redis'],
+    github: 'https://github.com/erashu122',
+    demo: '',
+    accent: 'violet',
+    icon: 'shopping',
+    status: 'in-progress',
+    year: '2025',
+  },
+  {
+    title: 'Task Management Dashboard',
+    description:
+      'A real-time collaborative task management dashboard with drag-and-drop Kanban boards, team collaboration features, and WebSocket-based live updates.',
+    stack: ['React.js', 'Spring Boot', 'WebSocket', 'PostgreSQL', 'Redis'],
+    github: 'https://github.com/erashu122',
+    demo: '',
+    accent: 'mint',
+    icon: 'kanban',
+    status: 'completed',
+    year: '2025',
+  },
+  {
+    title: 'AI-Powered Code Review Assistant',
+    description:
+      'An intelligent code review tool that analyzes pull requests, detects code smells, and suggests improvements using Spring AI and OpenAI integration.',
+    stack: ['Spring Boot', 'Spring AI', 'OpenAI API', 'React.js', 'PostgreSQL'],
+    github: 'https://github.com/erashu122',
+    demo: '',
+    accent: 'violet',
+    icon: 'brain',
+    status: 'in-progress',
+    year: '2025',
+  },
+  {
+    title: 'Real-Time Chat Application',
+    description:
+      'A scalable real-time messaging platform with end-to-end encryption, group chats, file sharing, and push notifications using WebSocket and Spring Security.',
+    stack: ['Spring Boot', 'WebSocket', 'MongoDB', 'React.js', 'JWT'],
+    github: 'https://github.com/erashu122',
+    demo: '',
+    accent: 'mint',
+    icon: 'message',
+    status: 'completed',
+    year: '2024',
+  },
+  {
+    title: 'Expense Tracker with Analytics',
+    description:
+      'A personal finance management tool with interactive dashboards, expense categorization, budget alerts, and data visualization using Chart.js.',
+    stack: ['React.js', 'Spring Boot', 'PostgreSQL', 'Chart.js', 'JWT'],
+    github: 'https://github.com/erashu122',
+    demo: '',
+    accent: 'violet',
+    icon: 'chart',
+    status: 'completed',
+    year: '2024',
   },
 ]
 
@@ -114,4 +192,11 @@ export const NAV_LINKS = [
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Journey' },
   { id: 'contact', label: 'Contact' },
+]
+
+export const STATS = [
+  { label: 'Projects', value: '9+', icon: 'folder' },
+  { label: 'Technologies', value: '15+', icon: 'code' },
+  { label: 'GitHub Stars', value: '50+', icon: 'star' },
+  { label: 'Commits', value: '500+', icon: 'git' },
 ]

@@ -1,66 +1,107 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { GraduationCap, Calendar } from 'lucide-react'
+import { Briefcase, GraduationCap, Award, ChevronRight } from 'lucide-react'
 import { EXPERIENCE } from '../data'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+const ICONS = {
+  'B.Tech in Information Technology': GraduationCap,
+  'Certifications': Award,
+  'Additional Certifications': Award,
+}
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.15 } },
+}
+
+const item = {
+  hidden: { opacity: 0, x: -20 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.5 } },
 }
 
 export default function Experience() {
   return (
-    <section id="experience" aria-label="Experience" className="relative py-28">
-      <div className="section-shell">
+    <section id="experience" className="relative py-24 md:py-32">
+      <div className="absolute inset-0 bg-grid bg-[size:40px_40px] opacity-20 pointer-events-none" />
+
+      <div className="section-shell relative z-10">
         <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeUp}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
         >
-          <p className="eyebrow">My Journey</p>
-          <h2 className="section-title">Education & Certifications.</h2>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-2 h-2 rounded-full bg-violet-500 animate-pulse-glow" />
+            <span className="eyebrow">My Journey</span>
+          </div>
+          <h2 className="section-title">Education & Certifications</h2>
+          <p className="mt-3 text-ink-400 max-w-xl">
+            Building expertise through academic rigor and continuous learning.
+          </p>
         </motion.div>
 
-        <ol className="relative mt-14 ml-3 border-l border-white/10 sm:ml-6">
-          {EXPERIENCE.map((exp, i) => (
-            <motion.li
-              key={exp.company}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeUp}
-              transition={{ delay: i * 0.1 }}
-              className="relative pb-14 pl-8 last:pb-0 sm:pl-12"
-            >
-              <span className="absolute -left-[9px] top-1 flex h-4 w-4 items-center justify-center rounded-full border border-violet-400/50 bg-base-950">
-                <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-              </span>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="relative"
+        >
+          {/* Timeline Line */}
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-mint-500/30 to-transparent" />
 
-              <div className="glass-panel rounded-2xl p-6 transition-colors hover:border-violet-400/30">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="font-display text-lg font-semibold text-ink-100">
-                    {exp.role}
-                  </h3>
-                  <span className="flex items-center gap-1.5 font-mono text-xs text-ink-500">
-                    <Calendar size={13} /> {exp.period}
-                  </span>
-                </div>
-                <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-violet-400">
-                  <GraduationCap size={14} /> {exp.company}
-                </p>
-                <ul className="mt-4 space-y-2">
-                  {exp.points.map((point, idx) => (
-                    <li key={idx} className="flex gap-2 text-sm leading-relaxed text-ink-400">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-ink-500" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.li>
-          ))}
-        </ol>
+          <div className="space-y-8">
+            {EXPERIENCE.map((exp, idx) => {
+              const Icon = ICONS[exp.role] ?? Briefcase
+              return (
+                <motion.div
+                  key={exp.role + idx}
+                  variants={item}
+                  className="relative pl-16 md:pl-20"
+                >
+                  {/* Timeline Dot */}
+                  <div className="absolute left-4 md:left-6 top-1 w-5 h-5 rounded-full bg-base-900 border-2 border-violet-500 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
+                  </div>
+
+                  <div className="dashboard-card p-6 group">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 shrink-0">
+                          <Icon size={18} />
+                        </div>
+                        <div>
+                          <h3 className="font-display font-semibold text-ink-100 text-lg">
+                            {exp.role}
+                          </h3>
+                          <p className="text-sm text-ink-400">{exp.company}</p>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-ink-400 shrink-0">
+                        <ChevronRight size={12} className="text-violet-400" />
+                        {exp.period}
+                      </span>
+                    </div>
+
+                    <ul className="space-y-2">
+                      {exp.points.map((point, pidx) => (
+                        <li
+                          key={pidx}
+                          className="flex items-start gap-3 text-sm text-ink-300"
+                        >
+                          <span className="w-1 h-1 rounded-full bg-violet-400 mt-2 shrink-0" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

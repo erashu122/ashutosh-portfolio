@@ -1,252 +1,237 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Twitter, Send, CheckCircle2, AlertCircle } from 'lucide-react'
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Send,
+  ArrowUpRight,
+  CheckCircle2,
+} from 'lucide-react'
 import { PROFILE } from '../data'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
 }
 
-function validate(values) {
-  const errors = {}
-  if (!values.name.trim()) errors.name = 'Please enter your name.'
-  if (!values.email.trim()) {
-    errors.email = 'Please enter your email.'
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = 'Please enter a valid email address.'
-  }
-  if (!values.message.trim()) {
-    errors.message = 'Please write a short message.'
-  } else if (values.message.trim().length < 10) {
-    errors.message = 'Message should be at least 10 characters.'
-  }
-  return errors
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
 export default function Contact() {
-  const [values, setValues] = useState({ name: '', email: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState({})
-  const [touched, setTouched] = useState({})
-  const [status, setStatus] = useState('idle') // idle | submitting | success
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setValues((v) => ({ ...v, [name]: value }))
-    if (touched[name]) {
-      setErrors(validate({ ...values, [name]: value }))
-    }
-  }
-
-  const handleBlur = (e) => {
-    const { name } = e.target
-    setTouched((t) => ({ ...t, [name]: true }))
-    setErrors(validate(values))
+  const validate = () => {
+    const errs = {}
+    if (!formData.name.trim()) errs.name = 'Name is required'
+    if (!formData.email.trim()) errs.email = 'Email is required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      errs.email = 'Invalid email'
+    if (!formData.message.trim()) errs.message = 'Message is required'
+    setErrors(errs)
+    return Object.keys(errs).length === 0
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const validationErrors = validate(values)
-    setErrors(validationErrors)
-    setTouched({ name: true, email: true, message: true })
-    if (Object.keys(validationErrors).length > 0) return
-
-    setStatus('submitting')
-    // Simulate a network request — wire this up to your backend / email service.
+    if (!validate()) return
+    setSubmitted(true)
     setTimeout(() => {
-      setStatus('success')
-      setValues({ name: '', email: '', message: '' })
-      setTouched({})
-    }, 900)
+      setSubmitted(false)
+      setFormData({ name: '', email: '', message: '' })
+    }, 3000)
   }
 
-  const fieldClass = (field) =>
-    `w-full rounded-lg border bg-base-900 px-4 py-3 text-sm text-ink-100 placeholder:text-ink-500 transition-colors focus:outline-none focus:ring-1 ${
-      touched[field] && errors[field]
-        ? 'border-red-400/50 focus:border-red-400/70 focus:ring-red-400/30'
-        : 'border-white/10 focus:border-violet-400/50 focus:ring-violet-400/30'
-    }`
+  const contactInfo = [
+    { icon: Mail, label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
+    { icon: Phone, label: 'Phone', value: PROFILE.phone, href: `tel:${PROFILE.phone}` },
+    { icon: MapPin, label: 'Location', value: PROFILE.location, href: null },
+  ]
+
+  const socialLinks = [
+    { icon: Github, label: 'GitHub', href: PROFILE.github },
+    { icon: Linkedin, label: 'LinkedIn', href: PROFILE.linkedin },
+  ]
 
   return (
-    <section id="contact" aria-label="Contact" className="relative py-28">
-      <div className="section-shell">
+    <section id="contact" className="relative py-24 md:py-32">
+      <div className="absolute inset-0 bg-grid bg-[size:40px_40px] opacity-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
+
+      <div className="section-shell relative z-10">
         <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeUp}
-          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
         >
-          <p className="eyebrow justify-center flex">Get In Touch</p>
-          <h2 className="section-title">Let's build something.</h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-ink-400">
-            Have a role, a project, or just want to talk shop? My inbox is
-            always open — I try to reply within a day or two.
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-2 h-2 rounded-full bg-mint-400 animate-pulse-glow" />
+            <span className="eyebrow">Get In Touch</span>
+          </div>
+          <h2 className="section-title">Let's Build Something Together</h2>
+          <p className="mt-3 text-ink-400 max-w-xl">
+            Have a project in mind or want to collaborate? Drop me a message — I am always open to new opportunities.
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          {/* Direct links */}
+        <div className="grid lg:grid-cols-5 gap-10 lg:gap-14">
+          {/* Left: Contact Info */}
           <motion.div
+            variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            className="glass-panel flex flex-col justify-between rounded-2xl p-8"
+            viewport={{ once: true }}
+            className="lg:col-span-2 space-y-6"
           >
-            <div>
-              <h3 className="font-display text-lg font-semibold text-ink-100">
-                Direct Contact
-              </h3>
-              <p className="mt-2 text-sm text-ink-400">
-                Prefer email or social? Reach me directly below.
-              </p>
-
-              <div className="mt-6 space-y-3">
-                <a
-                  href={`mailto:${PROFILE.email}`}
-                  className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-ink-200 transition-colors hover:border-violet-400/40 hover:text-violet-400"
+            <div className="space-y-4">
+              {contactInfo.map((info) => (
+                <motion.div
+                  key={info.label}
+                  variants={item}
+                  className="dashboard-card p-4 flex items-center gap-4 group"
                 >
-                  <Mail size={16} /> {PROFILE.email}
-                </a>
-                <a
-                  href={PROFILE.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-ink-200 transition-colors hover:border-violet-400/40 hover:text-violet-400"
-                >
-                  <Github size={16} /> GitHub
-                </a>
-                <a
-                  href={PROFILE.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-ink-200 transition-colors hover:border-violet-400/40 hover:text-violet-400"
-                >
-                  <Linkedin size={16} /> LinkedIn
-                </a>
-                <a
-                  href={PROFILE.twitter}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-ink-200 transition-colors hover:border-violet-400/40 hover:text-violet-400"
-                >
-                  <Twitter size={16} /> LeetCode
-                </a>
-              </div>
+                  <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 group-hover:bg-violet-500/20 transition-colors">
+                    <info.icon size={18} />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-mono text-ink-500 uppercase tracking-wider">
+                      {info.label}
+                    </div>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        className="text-sm text-ink-200 hover:text-violet-300 transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <div className="text-sm text-ink-200">{info.value}</div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            <p className="mt-8 font-mono text-xs text-ink-500">
-              currently based in {PROFILE.location}
-            </p>
+            <motion.div variants={item} className="dashboard-card p-5">
+              <h3 className="font-display font-semibold text-ink-100 mb-4">
+                Connect Online
+              </h3>
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-ink-300 hover:border-violet-500/30 hover:text-violet-300 hover:bg-violet-500/5 transition-all text-sm"
+                  >
+                    <social.icon size={16} />
+                    {social.label}
+                    <ArrowUpRight size={12} className="opacity-50" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Form */}
-          <motion.form
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            onSubmit={handleSubmit}
-            noValidate
-            className="glass-panel rounded-2xl p-8"
+          {/* Right: Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-3"
           >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div className="sm:col-span-1">
-                <label htmlFor="name" className="mb-1.5 block text-xs font-medium text-ink-300">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.name && errors.name)}
-                  aria-describedby="name-error"
-                  placeholder="Jane Doe"
-                  className={fieldClass('name')}
-                />
-                {touched.name && errors.name && (
-                  <p id="name-error" className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                    <AlertCircle size={12} /> {errors.name}
-                  </p>
-                )}
+            <form onSubmit={handleSubmit} className="dashboard-card p-6 md:p-8 space-y-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Send size={16} className="text-violet-400" />
+                <span className="font-mono text-sm text-ink-300">send_message.sh</span>
               </div>
 
-              <div className="sm:col-span-1">
-                <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-ink-300">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.email && errors.email)}
-                  aria-describedby="email-error"
-                  placeholder="jane@company.com"
-                  className={fieldClass('email')}
-                />
-                {touched.email && errors.email && (
-                  <p id="email-error" className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                    <AlertCircle size={12} /> {errors.email}
-                  </p>
-                )}
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs font-mono text-ink-500 uppercase tracking-wider mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="John Doe"
+                    className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border text-sm text-ink-100 placeholder:text-ink-600 transition-all focus:outline-none focus:border-violet-500/50 ${
+                      errors.name ? 'border-red-500/50' : 'border-white/[0.08]'
+                    }`}
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-xs text-red-400">{errors.name}</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-xs font-mono text-ink-500 uppercase tracking-wider mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="john@example.com"
+                    className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border text-sm text-ink-100 placeholder:text-ink-600 transition-all focus:outline-none focus:border-violet-500/50 ${
+                      errors.email ? 'border-red-500/50' : 'border-white/[0.08]'
+                    }`}
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-xs text-red-400">{errors.email}</p>
+                  )}
+                </div>
               </div>
 
-              <div className="sm:col-span-2">
-                <label htmlFor="message" className="mb-1.5 block text-xs font-medium text-ink-300">
+              <div>
+                <label className="block text-xs font-mono text-ink-500 uppercase tracking-wider mb-2">
                   Message
                 </label>
                 <textarea
-                  id="message"
-                  name="message"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your project..."
                   rows={5}
-                  value={values.message}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  aria-invalid={Boolean(touched.message && errors.message)}
-                  aria-describedby="message-error"
-                  placeholder="Tell me a bit about your project or role..."
-                  className={`${fieldClass('message')} resize-none`}
+                  className={`w-full px-4 py-3 rounded-xl bg-white/[0.03] border text-sm text-ink-100 placeholder:text-ink-600 transition-all focus:outline-none focus:border-violet-500/50 resize-none ${
+                    errors.message ? 'border-red-500/50' : 'border-white/[0.08]'
+                  }`}
                 />
-                {touched.message && errors.message && (
-                  <p id="message-error" className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                    <AlertCircle size={12} /> {errors.message}
-                  </p>
+                {errors.message && (
+                  <p className="mt-1 text-xs text-red-400">{errors.message}</p>
                 )}
               </div>
-            </div>
 
-            <button
-              type="submit"
-              disabled={status === 'submitting'}
-              className="btn-primary mt-6 w-full justify-center disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-            >
-              {status === 'submitting' ? (
-                'Sending…'
-              ) : (
-                <>
-                  <Send size={16} /> Send Message
-                </>
-              )}
-            </button>
-
-            {status === 'success' && (
-              <motion.p
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                role="status"
-                className="mt-4 flex items-center gap-2 text-sm text-mint-400"
+              <button
+                type="submit"
+                disabled={submitted}
+                className={`w-full btn-primary justify-center ${
+                  submitted ? 'bg-mint-600' : ''
+                }`}
               >
-                <CheckCircle2 size={16} /> Message sent — I'll get back to you soon.
-              </motion.p>
-            )}
-          </motion.form>
+                {submitted ? (
+                  <>
+                    <CheckCircle2 size={16} />
+                    Message Sent!
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>

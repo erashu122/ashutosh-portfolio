@@ -1,125 +1,135 @@
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Terminal } from 'lucide-react'
 import { NAV_LINKS } from '../data'
 
 export default function Navbar() {
-  const [active, setActive] = useState('home')
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40)
 
-  useEffect(() => {
-    const sections = NAV_LINKS.map((l) => document.getElementById(l.id)).filter(Boolean)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        })
-      },
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    )
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
+      const sections = NAV_LINKS.map((l) => l.id)
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i])
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          if (rect.top <= 120) {
+            setActiveSection(sections[i])
+            break
+          }
+        }
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const handleNav = (id) => {
-    setOpen(false)
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setMobileOpen(false)
+    const el = document.getElementById(id)
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? 'py-3' : 'py-5'
-      }`}
-    >
-      <nav
-        aria-label="Primary"
-        className={`section-shell flex items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300 ${
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'border-white/10 bg-base-900/70 backdrop-blur-xl shadow-lg shadow-black/20'
-            : 'border-transparent bg-transparent'
+            ? 'bg-base-950/80 backdrop-blur-xl border-b border-white/[0.06]'
+            : 'bg-transparent'
         }`}
       >
-        <button
-          onClick={() => handleNav('home')}
-          className="flex items-center gap-2 font-display text-lg font-semibold text-ink-100"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15 text-violet-400">
-            <Terminal size={16} strokeWidth={2.5} />
-          </span>
-          ashutosh<span className="text-violet-400">.</span>dev
-        </button>
+        <div className="section-shell">
+          <nav className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <a
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault()
+                handleNav('home')
+              }}
+              className="flex items-center gap-2 group"
+            >
+              <div className="w-8 h-8 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center group-hover:bg-violet-500/20 transition-colors">
+                <Terminal size={16} className="text-violet-400" />
+              </div>
+              <span className="font-display font-bold text-ink-100 text-lg">
+                Ashutosh<span className="text-violet-400">.</span>
+              </span>
+            </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <li key={link.id}>
-              <button
-                onClick={() => handleNav(link.id)}
-                className={`relative rounded-lg px-4 py-2 font-mono text-sm transition-colors ${
-                  active === link.id
-                    ? 'text-ink-100'
-                    : 'text-ink-400 hover:text-ink-200'
-                }`}
-              >
-                {active === link.id && (
-                  <motion.span
-                    layoutId="nav-pill"
-                    className="absolute inset-0 rounded-lg bg-white/[0.06] border border-white/10"
-                    transition={{ type: 'spring', duration: 0.5 }}
-                  />
-                )}
-                <span className="relative">{link.label}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-1">
+              {NAV_LINKS.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => handleNav(link.id)}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    activeSection === link.id
+                      ? 'text-violet-300'
+                      : 'text-ink-400 hover:text-ink-200'
+                  }`}
+                >
+                  {activeSection === link.id && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute inset-0 bg-violet-500/10 border border-violet-500/20 rounded-lg"
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="relative z-10">{link.label}</span>
+                </button>
+              ))}
+            </div>
 
-        <button
-          onClick={() => handleNav('contact')}
-          className="hidden md:inline-flex btn-secondary !px-4 !py-2 text-xs"
-        >
-          Let's Talk
-        </button>
+            {/* Mobile Toggle */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2 rounded-lg text-ink-400 hover:text-ink-100 hover:bg-white/[0.05] transition-all"
+            >
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </nav>
+        </div>
+      </motion.header>
 
-        <button
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden text-ink-200"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </nav>
-
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="section-shell mt-2 md:hidden"
-        >
-          <div className="glass-panel flex flex-col gap-1 rounded-2xl p-3">
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNav(link.id)}
-                className={`rounded-lg px-4 py-3 text-left font-mono text-sm ${
-                  active === link.id
-                    ? 'bg-white/[0.06] text-ink-100'
-                    : 'text-ink-400'
-                }`}
-              >
-                {link.label}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </header>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 top-16 z-40 md:hidden"
+          >
+            <div className="section-shell">
+              <div className="glass-card p-4 space-y-1 mt-2">
+                {NAV_LINKS.map((link) => (
+                  <button
+                    key={link.id}
+                    onClick={() => handleNav(link.id)}
+                    className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                      activeSection === link.id
+                        ? 'bg-violet-500/10 text-violet-300 border border-violet-500/20'
+                        : 'text-ink-400 hover:text-ink-200 hover:bg-white/[0.03]'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
