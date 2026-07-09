@@ -85,8 +85,8 @@ export const PROJECTS = [
     description:
       'A real-time weather lookup app integrating the OpenWeather API with city-based search and a fully responsive interface.',
     stack: ['JavaScript', 'Bootstrap', 'OpenWeather API'],
-    github: 'https://github.com/erashu122',
-    demo: 'https://github.com/erashu122/weather-vision.git/',
+    github: 'https://github.com/erashu122/weather-vision.git/',
+    demo: 'https://weather-vision-six.vercel.app/',
     accent: 'violet',
     icon: 'cloud',
     status: 'completed',
