@@ -78,7 +78,7 @@ export const PROJECTS = [
     accent: 'mint',
     icon: 'user',
     status: 'completed',
-    year: '2025',
+    year: '2026',
   },
   {
     title: 'Weather Forecast Web Application',
@@ -86,11 +86,11 @@ export const PROJECTS = [
       'A real-time weather lookup app integrating the OpenWeather API with city-based search and a fully responsive interface.',
     stack: ['JavaScript', 'Bootstrap', 'OpenWeather API'],
     github: 'https://github.com/erashu122',
-    demo: '',
+    demo: 'https://github.com/erashu122/weather-vision.git/',
     accent: 'violet',
     icon: 'cloud',
     status: 'completed',
-    year: '2024',
+    year: '2026',
   },
   {
     title: 'E-Commerce Microservices Platform',
