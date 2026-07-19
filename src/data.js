@@ -64,8 +64,8 @@ export const PROJECTS = [
     description:
       'A scalable fitness platform with secure REST APIs built on Spring Boot, JWT authentication, and Keycloak, backed by PostgreSQL services and validated end-to-end with Postman.',
     stack: ['React.js', 'Spring Boot', 'PostgreSQL', 'JWT', 'Keycloak'],
-    github: '',
-    demo: '',
+    github: 'https://github.com/erashu122/my_group_project01.git',
+    demo: 'https://fitness-app-frontend-x5am.onrender.com',
     accent: 'violet',
     icon: 'dumbbell',
     status: 'completed',
