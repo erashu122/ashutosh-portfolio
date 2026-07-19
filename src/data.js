@@ -176,6 +176,7 @@ export const EXPERIENCE = [
       'Java Spring Framework, Spring Boot, Spring AI - Gen AI.',
       'AWS Academy Graduate - Machine Learning Foundations.',
       'Android Developer Virtual Internship.',
+      'Python Django Full Stack Developer.',
     ],
   },
   {
@@ -195,35 +196,48 @@ export const CERTIFICATIONS = [
     issuer: 'Training Platform',
     date: '2025',
     skills: ['Java', 'Spring Boot', 'Spring AI', 'REST APIs'],
-    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+    credentialUrl:
+      'https://www.linkedin.com/posts/ashutosh34200_java-springboot-springframework-activity-7458058156229689345-AoLn',
   },
   {
     title: 'AWS Academy Graduate - Machine Learning Foundations',
     issuer: 'AWS Academy',
     date: '2025',
     skills: ['Machine Learning', 'AWS', 'Cloud Fundamentals'],
-    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+    credentialUrl:
+      'https://www.linkedin.com/posts/ashutosh34200_aws-machinelearning-cloudcomputing-activity-7351130405388845057-zx9-',
   },
   {
     title: 'Android Developer Virtual Internship',
     issuer: 'Virtual Internship Program',
     date: '2024',
     skills: ['Android', 'Java', 'Mobile App Development'],
-    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+    credentialUrl:
+      'https://www.linkedin.com/posts/ashutosh34200_androiddevelopment-googlefordevelopers-aicte-activity-7351113406667489280-cfjx',
   },
   {
     title: 'NPTEL Elite - Project Management',
     issuer: 'NPTEL',
     date: '2024',
     skills: ['Project Management', 'Planning', 'Execution'],
-    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+    credentialUrl:
+      'https://www.linkedin.com/posts/ashutosh34200_nptel-iitroorkee-projectmanagement-activity-7347193477169844224-SqTs',
   },
   {
     title: 'Full Stack Web Development Training',
     issuer: 'Training Program',
     date: '2024',
     skills: ['HTML', 'CSS', 'JavaScript', 'React.js'],
-    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+    credentialUrl:
+      'https://www.linkedin.com/posts/ashutosh34200_webdevelopment-fullstackdeveloper-certificate-activity-7356229981930143745-Ts_y',
+  },
+  {
+    title: 'Python Django Full Stack Developer',
+    issuer: 'Training Platform',
+    date: '2024',
+    skills: ['Python', 'Django', 'Full Stack Development'],
+    credentialUrl:
+      'https://www.linkedin.com/posts/ashutosh34200_python-django-fullstackdeveloper-activity-7305443154889977857-kaWP',
   },
 ]
 
@@ -238,6 +252,6 @@ export const NAV_LINKS = [
 export const STATS = [
   { label: 'Projects', value: '9+', icon: 'folder' },
   { label: 'Technologies', value: '20+', icon: 'code' },
-  { label: 'Certificates', value: '5+', icon: 'star' },
+  { label: 'Certificates', value: '6+', icon: 'star' },
   { label: 'Commits', value: '500+', icon: 'git' },
 ]
