@@ -4,42 +4,45 @@ export const PROFILE = {
     'Java Backend Developer',
     'Spring Boot Engineer',
     'Full-Stack Developer',
+    'React Developer',
+    'Python Developer',
+    'DevOps Learner',
     'Problem Solver',
   ],
   email: 'ashutoshkumar34200@gmail.com',
   phone: '+91-9267907152',
   github: 'https://github.com/erashu122',
   linkedin: 'https://www.linkedin.com/in/ashutosh34200/',
-  twitter: 'https://leetcode.com/',
+  leetcode: 'https://leetcode.com/',
   location: 'New Delhi, India',
   blurb:
-    "Aspiring Java backend developer who builds scalable full-stack applications with Java, Spring Boot, React.js and PostgreSQL. I enjoy designing secure REST APIs, exploring microservices architecture, and sharpening my problem-solving through data structures and algorithms.",
+    'Aspiring Java backend developer who builds scalable full-stack applications with Java, Spring Boot, React.js and PostgreSQL. I enjoy designing secure REST APIs, exploring microservices architecture, and sharpening my problem-solving through data structures and algorithms.',
 }
 
 export const SKILLS = [
   {
     category: 'Languages',
-    items: ['Java', 'C', 'JavaScript'],
+    items: ['Java', 'C', 'JavaScript', 'Python'],
   },
   {
     category: 'Frontend',
-    items: ['HTML5', 'CSS3', 'React.js', 'Bootstrap'],
+    items: ['HTML5', 'CSS3', 'React.js', 'Tailwind CSS', 'Bootstrap'],
   },
   {
     category: 'Backend',
-    items: ['Spring Boot', 'REST APIs', 'Microservices'],
+    items: ['Spring Boot', 'REST APIs', 'Microservices', 'Spring Security'],
   },
   {
     category: 'Security',
-    items: ['JWT', 'Keycloak', 'Spring Security'],
+    items: ['JWT', 'Keycloak', 'Authentication', 'Authorization'],
   },
   {
     category: 'Database',
-    items: ['PostgreSQL', 'MySQL'],
+    items: ['PostgreSQL', 'MySQL', 'MongoDB'],
   },
   {
     category: 'Tools',
-    items: ['Git', 'GitHub', 'Postman', 'VS Code', 'IntelliJ IDEA'],
+    items: ['Git', 'GitHub', 'Postman', 'VS Code', 'IntelliJ IDEA', 'Docker'],
   },
 ]
 
@@ -47,7 +50,7 @@ export const PROJECTS = [
   {
     title: 'Mitti-Desh',
     description:
-      'An e-commerce platform celebrating India\'s timeless pottery traditions. Features handcrafted terracotta products from rural artisans, product catalog, cart functionality, and artisan stories.',
+      "An e-commerce platform celebrating India's timeless pottery traditions. Features handcrafted terracotta products from rural artisans, product catalog, cart functionality, and artisan stories.",
     stack: ['React.js', 'Vite', 'Tailwind CSS', 'Responsive Design'],
     github: 'https://github.com/erashu122/mitti-desh.git',
     demo: 'https://mitti-desh.vercel.app/',
@@ -61,7 +64,7 @@ export const PROJECTS = [
     description:
       'A scalable fitness platform with secure REST APIs built on Spring Boot, JWT authentication, and Keycloak, backed by PostgreSQL services and validated end-to-end with Postman.',
     stack: ['React.js', 'Spring Boot', 'PostgreSQL', 'JWT', 'Keycloak'],
-    github: 'https://github.com/erashu122',
+    github: '',
     demo: '',
     accent: 'violet',
     icon: 'dumbbell',
@@ -97,7 +100,7 @@ export const PROJECTS = [
     description:
       'A full-featured e-commerce backend with order management, inventory tracking, and payment gateway integration. Built with Spring Boot microservices, API Gateway, and event-driven architecture using Kafka.',
     stack: ['Spring Boot', 'Kafka', 'PostgreSQL', 'Docker', 'Redis'],
-    github: 'https://github.com/erashu122',
+    github: '',
     demo: '',
     accent: 'violet',
     icon: 'shopping',
@@ -109,7 +112,7 @@ export const PROJECTS = [
     description:
       'A real-time collaborative task management dashboard with drag-and-drop Kanban boards, team collaboration features, and WebSocket-based live updates.',
     stack: ['React.js', 'Spring Boot', 'WebSocket', 'PostgreSQL', 'Redis'],
-    github: 'https://github.com/erashu122',
+    github: '',
     demo: '',
     accent: 'mint',
     icon: 'kanban',
@@ -121,7 +124,7 @@ export const PROJECTS = [
     description:
       'An intelligent code review tool that analyzes pull requests, detects code smells, and suggests improvements using Spring AI and OpenAI integration.',
     stack: ['Spring Boot', 'Spring AI', 'OpenAI API', 'React.js', 'PostgreSQL'],
-    github: 'https://github.com/erashu122',
+    github: '',
     demo: '',
     accent: 'violet',
     icon: 'brain',
@@ -133,7 +136,7 @@ export const PROJECTS = [
     description:
       'A scalable real-time messaging platform with end-to-end encryption, group chats, file sharing, and push notifications using WebSocket and Spring Security.',
     stack: ['Spring Boot', 'WebSocket', 'MongoDB', 'React.js', 'JWT'],
-    github: 'https://github.com/erashu122',
+    github: '',
     demo: '',
     accent: 'mint',
     icon: 'message',
@@ -145,7 +148,7 @@ export const PROJECTS = [
     description:
       'A personal finance management tool with interactive dashboards, expense categorization, budget alerts, and data visualization using Chart.js.',
     stack: ['React.js', 'Spring Boot', 'PostgreSQL', 'Chart.js', 'JWT'],
-    github: 'https://github.com/erashu122',
+    github: '',
     demo: '',
     accent: 'violet',
     icon: 'chart',
@@ -158,7 +161,7 @@ export const EXPERIENCE = [
   {
     role: 'B.Tech in Information Technology',
     company: 'JIS College of Engineering',
-    period: '2022 — 2026',
+    period: '2022 - 2026',
     points: [
       'CGPA: 7.83',
       'Strong foundation in OOP, Microservices, and Data Structures & Algorithms.',
@@ -170,8 +173,8 @@ export const EXPERIENCE = [
     company: 'Multiple Platforms',
     period: 'Ongoing',
     points: [
-      'Java Spring Framework, Spring Boot, Spring AI — Gen AI.',
-      'AWS Academy Graduate — Machine Learning Foundations.',
+      'Java Spring Framework, Spring Boot, Spring AI - Gen AI.',
+      'AWS Academy Graduate - Machine Learning Foundations.',
       'Android Developer Virtual Internship.',
     ],
   },
@@ -180,9 +183,47 @@ export const EXPERIENCE = [
     company: 'NPTEL / Training Programs',
     period: 'Ongoing',
     points: [
-      'NPTEL Elite — Project Management.',
+      'NPTEL Elite - Project Management.',
       'Full Stack Web Development Training.',
     ],
+  },
+]
+
+export const CERTIFICATIONS = [
+  {
+    title: 'Java Spring Framework, Spring Boot, Spring AI - Gen AI',
+    issuer: 'Training Platform',
+    date: '2025',
+    skills: ['Java', 'Spring Boot', 'Spring AI', 'REST APIs'],
+    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+  },
+  {
+    title: 'AWS Academy Graduate - Machine Learning Foundations',
+    issuer: 'AWS Academy',
+    date: '2025',
+    skills: ['Machine Learning', 'AWS', 'Cloud Fundamentals'],
+    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+  },
+  {
+    title: 'Android Developer Virtual Internship',
+    issuer: 'Virtual Internship Program',
+    date: '2024',
+    skills: ['Android', 'Java', 'Mobile App Development'],
+    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+  },
+  {
+    title: 'NPTEL Elite - Project Management',
+    issuer: 'NPTEL',
+    date: '2024',
+    skills: ['Project Management', 'Planning', 'Execution'],
+    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
+  },
+  {
+    title: 'Full Stack Web Development Training',
+    issuer: 'Training Program',
+    date: '2024',
+    skills: ['HTML', 'CSS', 'JavaScript', 'React.js'],
+    credentialUrl: 'https://www.linkedin.com/in/ashutosh34200/details/certifications/',
   },
 ]
 
@@ -196,7 +237,7 @@ export const NAV_LINKS = [
 
 export const STATS = [
   { label: 'Projects', value: '9+', icon: 'folder' },
-  { label: 'Technologies', value: '15+', icon: 'code' },
-  { label: 'GitHub Stars', value: '50+', icon: 'star' },
+  { label: 'Technologies', value: '20+', icon: 'code' },
+  { label: 'Certificates', value: '5+', icon: 'star' },
   { label: 'Commits', value: '500+', icon: 'git' },
 ]

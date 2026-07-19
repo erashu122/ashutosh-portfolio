@@ -65,7 +65,7 @@ export default function About() {
                   <span className="text-violet-400">$</span>{' '}
                   <span className="text-ink-300">whoami</span>
                   <div className="mt-1 text-ink-100">
-                    {PROFILE.name} — Software Engineer
+                    {PROFILE.name} - Software Engineer
                   </div>
                 </div>
 
@@ -73,7 +73,7 @@ export default function About() {
                   <span className="text-violet-400">$</span>{' '}
                   <span className="text-ink-300">cat mission.txt</span>
                   <div className="mt-1 text-ink-300 italic border-l-2 border-violet-500/30 pl-3">
-                    "Turn ambiguous problems into reliable, elegant software — and
+                    "Turn ambiguous problems into reliable, elegant software - and
                     enjoy the craft along the way."
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function About() {
               </div>
               <h2 className="section-title">Core Technical Skills</h2>
               <p className="mt-3 text-ink-400 max-w-lg">
-                My toolkit spans the full stack — from JVM-based backends to modern frontend frameworks.
+                My toolkit spans the full stack - from JVM-based backends to modern frontend frameworks.
               </p>
             </div>
 

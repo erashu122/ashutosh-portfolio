@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Briefcase, GraduationCap, Award, ChevronRight } from 'lucide-react'
-import { EXPERIENCE } from '../data'
+import { Award, Briefcase, ChevronRight, ExternalLink, GraduationCap, ShieldCheck } from 'lucide-react'
+import { CERTIFICATIONS, EXPERIENCE } from '../data'
 
 const ICONS = {
   'B.Tech in Information Technology': GraduationCap,
@@ -100,6 +100,69 @@ export default function Experience() {
                 </motion.div>
               )
             })}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-16"
+        >
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full bg-mint-400 animate-pulse-glow" />
+              <span className="eyebrow">Verified Learning</span>
+            </div>
+            <h3 className="section-title">Certificates</h3>
+            <p className="mt-3 text-ink-400 max-w-xl">
+              Click any certificate to open the credential page.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {CERTIFICATIONS.map((certificate, idx) => (
+              <motion.a
+                key={certificate.title}
+                href={certificate.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: idx * 0.06 }}
+                className="dashboard-card p-5 group block"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-mint-500/10 flex items-center justify-center text-mint-400 group-hover:bg-mint-500/20 transition-colors">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-ink-400">
+                    {certificate.date}
+                    <ExternalLink size={11} className="text-violet-400" />
+                  </span>
+                </div>
+
+                <h4 className="font-display text-lg font-semibold text-ink-100 group-hover:text-mint-300 transition-colors">
+                  {certificate.title}
+                </h4>
+                <p className="mt-2 text-sm text-ink-400">{certificate.issuer}</p>
+
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {certificate.skills.map((skill) => (
+                    <span key={skill} className="tag-chip">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-violet-300">
+                  View Certificate
+                  <ExternalLink size={14} />
+                </div>
+              </motion.a>
+            ))}
           </div>
         </motion.div>
       </div>

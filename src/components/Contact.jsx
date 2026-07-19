@@ -78,7 +78,7 @@ export default function Contact() {
           </div>
           <h2 className="section-title">Let's Build Something Together</h2>
           <p className="mt-3 text-ink-400 max-w-xl">
-            Have a project in mind or want to collaborate? Drop me a message — I am always open to new opportunities.
+            Have a project in mind or want to collaborate? Drop me a message - I am always open to new opportunities.
           </p>
         </motion.div>
 

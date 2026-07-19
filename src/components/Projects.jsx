@@ -86,7 +86,7 @@ export default function Projects() {
           </div>
           <h2 className="section-title">Featured Projects</h2>
           <p className="mt-3 text-ink-400 max-w-xl">
-            A curated collection of my work — from e-commerce platforms to microservices architecture and AI-powered tools.
+            A curated collection of my work - from e-commerce platforms to microservices architecture and AI-powered tools.
           </p>
         </motion.div>
 
